@@ -22,6 +22,7 @@ const rangeValue=$('.rangeValue');
 const app={
     currentIndex: 0,
     isPlaying :false,
+    isMute: false,
     isNext :false,
     isRandom: false,
     isTimeUpdate: true,
@@ -33,13 +34,9 @@ const app={
         {
             name: 'BadHabits' ,
             singer: 'EdSheeran',
-<<<<<<< HEAD
             path: './Assets/BadHabit.mp3',
-            image: './Assets/iBadHabit.jpg'
-=======
-             path: 'Assets/BadHabit.mp3',
-            image: 'Assets/iBadHabit.jpg'
->>>>>>> b33d30e88053c43be85baf6f4c0bffa37bc81066
+            image: './Assets/iBadHabit.jpg',
+
         },
         {
             name: 'What are words' ,
@@ -162,6 +159,13 @@ const app={
             _this.setConfig('isRepeat',_this.isRepeat);
             repeatBtn.classList.toggle('active',_this.isRepeat);
         }
+        //Mute volume
+        volumeIcon.onclick =function(){
+            audio.volume=0;
+            _this.songVolume=audio.volume;
+            volumeDisplay();
+            volumeIcon.innerHTML='<i class="fas fa-volume-mute"></i>'
+        }
         //Auto play next song
         const autoNextSong=()=>{
                 if(_this.isRandom)
@@ -239,12 +243,16 @@ const app={
                 }
             }
         };
+        function volumeDisplay(){
+            volumeSet.value=_this.songVolume;
+            var volumeColor='linear-gradient(90deg, rgb(75, 36, 173)' +_this.songVolume+'%, rgb(214, 214, 214) '+_this.songVolume+'%)';
+            volumeSet.style.background=volumeColor;
+        };
         //Volume adjustment
         volumeSet.oninput= function(e){
             _this.songVolume=e.target.value;
             audio.volume=_this.songVolume/100;
-            var volumeColor='linear-gradient(90deg, rgb(75, 36, 173)' +_this.songVolume+'%, rgb(214, 214, 214) '+_this.songVolume+'%)';
-            volumeSet.style.background=volumeColor;
+            volumeDisplay();
             _this.setConfig("volume",_this.songVolume);
             _this.volumeIconHandle();   
         };
@@ -262,6 +270,12 @@ const app={
         prevBtn.onmouseup = function(){
             prevBtn.classList.remove('active');
         };
+        volumeIcon.onmousedown =function(){
+            volumeIcon.classList.add('active');
+        }
+        volumeIcon.onmouseup =function(){
+            volumeIcon.classList.remove('active');
+        }
 
             
         //progress.addEventListener('input',function(){
