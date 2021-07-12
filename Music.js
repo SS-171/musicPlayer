@@ -33,8 +33,8 @@ const app={
         {
             name: 'BadHabits' ,
             singer: 'EdSheeran',
-             path: './Assets/BadHabit.mp3',
-            image: './Assets/iBadHabit.jpg'
+             path: 'Assets/BadHabit.mp3',
+            image: 'Assets/iBadHabit.jpg'
         },
         {
             name: 'What are words' ,
