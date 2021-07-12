@@ -33,38 +33,38 @@ const app={
         {
             name: 'BadHabits' ,
             singer: 'EdSheeran',
-             path: '/Assets/BadHabit.mp3',
-            image: '/Assets/iBadHabit.jpg'
+             path: 'Assets/BadHabit.mp3',
+            image: 'Assets/iBadHabit.jpg'
         },
         {
             name: 'What are words' ,
             singer: 'Medina',
-            path: './Assets/What are words.mp3',
-            image: './Assets/words.jpg'
+            path: 'Assets/What are words.mp3',
+            image: 'Assets/words.jpg'
         },
         {
             name: 'HienNha' ,
             singer: 'No name',
-            path: './Assets/HienNha.mp3',
-            image: './Assets/ihiennha.jfif'
+            path: 'Assets/HienNha.mp3',
+            image: 'Assets/ihiennha.jfif'
         },
         {
             name: 'LeaveTheDoorOpen' ,
             singer: 'BrunoMars',
-            path: './Assets/LeaveTheDoorOpen.mp3',
-            image: './Assets/Leave.jpg'
+            path: 'Assets/LeaveTheDoorOpen.mp3',
+            image: 'Assets/Leave.jpg'
         },
         {
             name: 'ToTheMoon' ,
             singer: 'Hooligan',
-            path: './Assets/Tothemoon.mp3',
-            image: './Assets/Moon.jpg'
+            path: 'Assets/Tothemoon.mp3',
+            image: 'Assets/Moon.jpg'
         },
         {
             name: 'Love You Baby' ,
             singer: 'Sinastra',
-            path: './Assets/LoveYouBaby.mp3',
-            image: './Assets/Love.jpg'
+            path: 'Assets/LoveYouBaby.mp3',
+            image: 'Assets/Love.jpg'
         }
         
     ],
