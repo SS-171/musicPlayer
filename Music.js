@@ -33,8 +33,7 @@ const app={
         {
             name: 'BadHabits' ,
             singer: 'EdSheeran',
-            // path: './Assets/BadHabit.mp3',
-            path:'https://voca.ro/11nl3OJfI5an',
+            path: './Assets/BadHabit.mp3',
             image: './Assets/iBadHabit.jpg'
         },
         {
