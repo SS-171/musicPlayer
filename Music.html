@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music player</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">    
+    <link rel='stylesheet' href='Music.css'/>
+    <link rel="icon" href="data:image/png;base64,iV
+    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" type="image/gif" sizes="16x16">
+</head>
+<body>
+    <div class="player">
+        <!-- Dashboard -->
+        <div class="dashboard">
+          <!-- Header -->
+          <header>
+            <h4>Now playing:</h4>
+            <h2>String 57th & 9th</h2>
+          </header>
+      
+          <!-- CD -->
+          <div class="cd">
+            <div class="cd-thumb">
+            </div>
+           <!--progress bar-->
+          </div>
+          <div class='progressRange'>
+            <div class='rangeValue' id='rangeValue'>00:00</div>
+            <input id="progress" class="progress" type="range" value="0" step="1" min="0" max="100">
+          </div>
+          <div class='time'>
+            <span class="startTime">0:00</span>
+            <span class="endTime"></span>
+            
+          </div>        
+          <!-- Control -->
+          <div class="control">
+            <div class="btn btn-repeat">
+              <i class="fas fa-redo"></i>
+            </div>
+            <div class="btn btn-prev">
+              <i class="fas fa-step-backward"></i>
+            </div>
+            <div class="btn btn-toggle-play">
+              <i class="fas fa-pause icon-pause"></i>
+              <i class="fas fa-play icon-play"></i>
+            </div>
+            <div class="btn btn-next ">
+              <i class="fas fa-step-forward"></i>
+            </div>
+            <div class="btn btn-random">
+              <i class="fas fa-random"></i>
+            </div>
+          </div>
+          <!-- Volume Adjustment -->
+          <div class='volume'>
+            <div class='btn btn-volume'>
+            </div>
+            <div class='volumeRange'>
+              <input type='range' id='volumeAdjust' class='volumeAdjust' min='0' max='100' value='0' step='1'/>
+            </div>
+          </div>
+
+          <audio id="audio" src=""></audio>
+        </div>
+      
+        <!-- Playlist -->
+        <div class="playlist">
+
+        </div>
+      </div>      
+</body>
+<script src='Music.js'></script>
+</html>
+
+
+<!-- Design from: https://static.collectui.com/shots/3671744/musicloud-revolutionary-app-for-music-streaming-large -->
