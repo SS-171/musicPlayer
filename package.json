@@ -1,0 +1,23 @@
+{
+  "name": "MusicPlayer",
+  "version": "1.0.0",
+  "description": "This is music player made with html, javascript and css.\r Song list is chosen as pretty as possible",
+  "main": "Music.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SS-171/musicPlayer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SS-171/musicPlayer/issues"
+  },
+  "homepage": "https://github.com/SS-171/musicPlayer#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
