@@ -20,6 +20,7 @@ const playlist = $('.playlist');
 const endTime=$('.endTime');
 const rangeValue=$('.rangeValue');
 const app={
+    currentSong: {},
     currentIndex: 0,
     isPlaying :false,
     isMute: false,
@@ -34,8 +35,10 @@ const app={
         {
             name: 'BadHabits' ,
             singer: 'EdSheeran',
-            path: './Assets/BadHabit.mp3',
-            image: './Assets/iBadHabit.jpg',
+            // path: './Assets/BadHabit.mp3',
+            path:'https://thanhnhonmsplayer.000webhostapp.com/Assets/BadHabit.mp3',
+            image: 'https://thanhnhonmsplayer.000webhostapp.com/Assets/iBadHabit.jpg'
+            // image: './Assets/iBadHabit.jpg',
 
         },
         {
@@ -93,14 +96,6 @@ const app={
 
         playlist.innerHTML=htmls.join('');
  
-    },
-    defineProperties: function(){
-        Object.defineProperty(this,'currentSong',{
-        get: function(){
-            return this.songs[this.currentIndex];
-        }
-    }
-        )
     },
     handleEvents: function(){
         const _this=this; 
@@ -203,6 +198,9 @@ const app={
                     rangeValue.style.left =audio.currentTime/audio.duration*89+'%'
                     var color = 'linear-gradient(90deg, rgb(9, 241, 21)' + progress.value + '% , rgb(214, 214, 214)' + progress.value+ '%)';
                     progress.style.background =color;
+                    ///cd Thumb complete percent
+                    cd.style.background=`linear-gradient(to left, purple ${progress.value}%, rgb(207, 217, 221) 0%)`
+                    cd.style.transform=`rotate(${50-progress.value}deg)`
                 }
             };
         audio.onended = function(){
@@ -285,6 +283,7 @@ const app={
 
     },
     loadCurrentSong: function(){
+        this.currentSong=this.songs[this.currentIndex];
         heading.textContent =this.currentSong.name;
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`;
         audio.src =this.currentSong.path;
@@ -362,10 +361,9 @@ const app={
         this.savingConfig();
         this.volumeLoad();
         this.currentIndex = this.config.currentIndex;
-        this.defineProperties();
         this.loadAndSave();
         this.handleEvents();
              
     }
 }
-document.addEventListener("DOMContentLoaded", app.start());
+app.start();

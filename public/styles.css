@@ -66,12 +66,18 @@
   .cd {
     display: flex;
     margin: auto;
+    border-radius:50%;
+    flex-direction: row;
     width: 150px;
+    background: linear-gradient(to left, purple 0%, rgb(207, 217, 221) 0%);
+    transform: rotate(0deg);
+    padding: 4px;
   }
   
   .cd-thumb {
     width: 100%;
     padding-top: 100%;
+    border: 4px gradient dotted 1px;
     border-radius: 50%;
     background-color: #333;
     background-size: cover;
