@@ -358,7 +358,7 @@ const app={
     reloadHandle: function(){ 
         if(this.config.currentIndex===undefined)
         {
-            this.config.currentIndex=0;
+            this.currentIndex=0;
             this.config.volume=100;
             
         }
