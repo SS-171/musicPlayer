@@ -35,10 +35,8 @@ const app={
         {
             name: 'BadHabits' ,
             singer: 'EdSheeran',
-            // path: './Assets/BadHabit.mp3',
-            path:'https://thanhnhonmsplayer.000webhostapp.com/Assets/BadHabit.mp3',
-            image: 'https://thanhnhonmsplayer.000webhostapp.com/Assets/iBadHabit.jpg'
-            // image: './Assets/iBadHabit.jpg',
+            path: './Assets/BadHabit.mp3',
+            image: './Assets/iBadHabit.jpg'
 
         },
         {
@@ -357,9 +355,24 @@ const app={
         randomBtn.classList.toggle('active',this.isRandom);
         repeatBtn.classList.toggle('active',this.isRepeat);
     },
+    reloadHandle: function(){ 
+        if(this.config.currentIndex===undefined)
+        {
+            this.config.currentIndex=0;
+            this.config.volume=100;
+            
+        }
+        else {
+            this.currentIndex = this.config.currentIndex;
+            // this.songVolume=this.config.volume;
+        }
+    }
+    ,
     start: function(){
         this.savingConfig();
+        this.reloadHandle();
         this.volumeLoad();
+        this.reloadHandle();
         //this.currentIndex = this.config.currentIndex;
         this.loadAndSave();
         this.handleEvents();
