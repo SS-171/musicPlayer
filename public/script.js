@@ -208,7 +208,7 @@ const app={
             }
             else
             autoNextSong();
-        }
+        };
         progress.oninput =function(e){
                 var x=0;
                 x=e.target.value;
@@ -350,22 +350,24 @@ const app={
        
     },
     savingConfig: function(){
-        this.isRandom=this.config.isRandom;
-        this.isRepeat=this.config.isRepeat;
-        randomBtn.classList.toggle('active',this.isRandom);
-        repeatBtn.classList.toggle('active',this.isRepeat);
+
+
     },
     reloadHandle: function(){ 
+        //First load
         if(this.config.currentIndex===undefined)
         {
             this.currentIndex=0;
             this.config.volume=100;
-            
         }
         else {
             this.currentIndex = this.config.currentIndex;
-            // this.songVolume=this.config.volume;
+            this.isRandom=this.config.isRandom;
+            this.isRepeat=this.config.isRepeat;
+            
         }
+        randomBtn.classList.toggle('active',this.isRandom);
+        repeatBtn.classList.toggle('active',this.isRepeat);
     }
     ,
     start: function(){
