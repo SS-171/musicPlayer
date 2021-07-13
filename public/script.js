@@ -360,7 +360,7 @@ const app={
     start: function(){
         this.savingConfig();
         this.volumeLoad();
-        this.currentIndex = this.config.currentIndex;
+        //this.currentIndex = this.config.currentIndex;
         this.loadAndSave();
         this.handleEvents();
              
