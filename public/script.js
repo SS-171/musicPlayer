@@ -19,6 +19,7 @@ const audio = $('#audio');
 const playlist = $('.playlist');
 const endTime=$('.endTime');
 const rangeValue=$('.rangeValue');
+const startTime =$('.startTime');
 const favouriteSongList=$('.favouriteList');
 var favouriteArray=[]
 const app={
@@ -199,6 +200,7 @@ const app={
                     const currentMinute = Math.floor(audio.currentTime/60);
                     const currentSecond =Math.floor(audio.currentTime%60)
                     rangeValue.innerHTML =`0${currentMinute}:${currentSecond>9?currentSecond:'0'+currentSecond}`;
+                    startTime.innerHTML =`0${currentMinute}:${currentSecond>9?currentSecond:'0'+currentSecond}`;
                     rangeValue.style.left =audio.currentTime/audio.duration*89+'%'
                     var color = 'linear-gradient(90deg, rgb(9, 241, 21)' + progress.value + '% , rgb(214, 214, 214)' + progress.value+ '%)';
                     progress.style.background =color;
@@ -206,6 +208,7 @@ const app={
                     ///cd Thumb complete percent
                     cd.style.background=`linear-gradient(to left, purple ${progress.value}%, rgb(207, 217, 221) 0%)`
                     cd.style.transform=`rotate(${50-progress.value}deg)`
+                    
                 }
             };
         audio.onended = function(){
@@ -389,7 +392,6 @@ const app={
         if(favouriteArray.length!==0)
         {
             favouriteArray=this.config.favouriteList;
-            console.log(favouriteArray);
             const tempIndexArray=[];
             this.songs.map((song,index)=>{
                 tempIndexArray.push(index)
