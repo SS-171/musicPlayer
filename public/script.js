@@ -372,9 +372,10 @@ const app={
         //First load
         if(this.config.currentIndex===undefined)
         {
+            favouriteArray=[0.1];
             this.currentIndex=0;
             this.config.volume=100;
-            favouriteArray=[0.1]
+           
         }
         else {
             this.currentIndex = this.config.currentIndex;
