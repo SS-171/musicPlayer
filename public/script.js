@@ -390,7 +390,7 @@ const app={
         repeatBtn.classList.toggle('active',this.isRepeat);
     },
     favouriteSave:function(){ 
-        if(favouriteArray.length!==0)
+        if(favouriteArray!=null)
         {
             favouriteArray=this.config.favouriteList;
             const tempIndexArray=[];
