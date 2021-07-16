@@ -372,7 +372,6 @@ const app={
         //First load
         if(this.config.currentIndex===undefined)
         {
-            favouriteArray=[0.1];
             this.currentIndex=0;
             this.config.volume=100;
            
@@ -381,32 +380,34 @@ const app={
             this.currentIndex = this.config.currentIndex;
             this.isRandom=this.config.isRandom;
             this.isRepeat=this.config.isRepeat;
-            favouriteArray.splice(favouriteArray.indexOf(0.1),1) 
             
         }
         randomBtn.classList.toggle('active',this.isRandom);
         repeatBtn.classList.toggle('active',this.isRepeat);
     },
     favouriteSave:function(){ 
-        favouriteArray=this.config.favouriteList;
-        console.log(favouriteArray);
-        const tempIndexArray=[];
-        this.songs.map((song,index)=>{
-            tempIndexArray.push(index)
-        });
-        let difference = tempIndexArray.filter(x => !favouriteArray.includes(x));
-            favouriteArray.map(favIndex=>{
-         
-                        const favouriteSong=$(`[data-index=\'${favIndex}\'] .favourite`)
-                        favouriteSong.classList.add('active');    
-
+        if(favouriteArray.length!==0)
+        {
+            favouriteArray=this.config.favouriteList;
+            console.log(favouriteArray);
+            const tempIndexArray=[];
+            this.songs.map((song,index)=>{
+                tempIndexArray.push(index)
             });
-            difference.map(favIndex=>{
-         
-                const favouriteSong=$(`[data-index=\'${favIndex}\'] .favourite`)
-                favouriteSong.classList.remove('active');           
 
-    });
+                    let difference = tempIndexArray.filter(x => !favouriteArray.includes(x));
+                    favouriteArray.map(favIndex=>{
+                
+                                const favouriteSong=$(`[data-index=\'${favIndex}\'] .favourite`)
+                                favouriteSong.classList.add('active');    
+
+                    });
+                    difference.map(favIndex=>{
+                
+                        const favouriteSong=$(`[data-index=\'${favIndex}\'] .favourite`)
+                        favouriteSong.classList.remove('active');  
+                
+        });}
     }
     ,
     favouriteHandle:function(){
