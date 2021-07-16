@@ -374,11 +374,13 @@ const app={
         {
             this.currentIndex=0;
             this.config.volume=100;
+            favouriteArray=[0.1]
         }
         else {
             this.currentIndex = this.config.currentIndex;
             this.isRandom=this.config.isRandom;
             this.isRepeat=this.config.isRepeat;
+            favouriteArray.splice(favouriteArray.indexOf(0.1),1) 
             
         }
         randomBtn.classList.toggle('active',this.isRandom);
@@ -433,7 +435,9 @@ const app={
         btnMenu.onclick=function(){
             __this.favouriteHandle();
             btnMenu.classList.toggle('close');
-            favouriteSongList.classList.toggle('active');
+            if(favouriteArray.length!==0)
+                {
+                    favouriteSongList.classList.toggle('active');}
         };
         window.onclick=function(event){
             if(!event.target.matches('.menuBtn')&&!event.target.matches('.line')){
