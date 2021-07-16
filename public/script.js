@@ -4,21 +4,23 @@ const PLAYER_STORAGE_KEY ="mode"
 const player=$('.player');
 const volumeSet=$('#volumeAdjust')
 const volumeIcon=$('.volume .btn-volume')
-const allSongs=$$('.song');
 const activeSong=$('.song.active');
 const cd = $('.cd');
-const heading = $('header h2');
+const heading = $('header marquee');
 const cdThumb =$('.cd-thumb');
 const repeatBtn = $('.btn-repeat');
 const prevBtn = $('.btn-prev');
 const playBtn = $('.btn-toggle-play');
 const nextBtn = $('.btn-next');
+const btnMenu=$('.menuBtn');
 const randomBtn = $('.btn-random');
 const progress= $('#progress');
 const audio = $('#audio');
 const playlist = $('.playlist');
 const endTime=$('.endTime');
 const rangeValue=$('.rangeValue');
+const favouriteSongList=$('.favouriteList');
+var favouriteArray=[]
 const app={
     currentSong: {},
     currentIndex: 0,
@@ -86,26 +88,30 @@ const app={
               <p class="author"${song.singer}</p>
             </div>
             <div class="option">
-              <i class="fas fa-ellipsis-h"></i>
+                <i class="favourite fas fa-heart"></i>
             </div>
           </div>
             `
         });
-
         playlist.innerHTML=htmls.join('');
  
     },
     handleEvents: function(){
         const _this=this; 
         const cdWidth = cd.offsetWidth;
+        //CD Rotation
         const cdThumbAnimate =cdThumb.animate([
             {transform:'rotate(360deg)'}
         ],
         {
             iterations:Infinity,
             duration:10000
-        });
+        })
         cdThumbAnimate.pause();
+        //Heading animation
+        heading.start();
+        
+        //Scroll view
         document.onscroll = function(){
             const scrollTop = window.scrollY||document.documentElement.scrollTop
             const newWidth = cdWidth -scrollTop;
@@ -196,6 +202,7 @@ const app={
                     rangeValue.style.left =audio.currentTime/audio.duration*89+'%'
                     var color = 'linear-gradient(90deg, rgb(9, 241, 21)' + progress.value + '% , rgb(214, 214, 214)' + progress.value+ '%)';
                     progress.style.background =color;
+
                     ///cd Thumb complete percent
                     cd.style.background=`linear-gradient(to left, purple ${progress.value}%, rgb(207, 217, 221) 0%)`
                     cd.style.transform=`rotate(${50-progress.value}deg)`
@@ -226,16 +233,27 @@ const app={
         playlist.onclick= function(e){
             const songNode=e.target.closest('.song:not(.active)');
             const option=e.target.closest('.option');
+            const favouriteIndex=Number(e.target.closest('.song').getAttribute('data-index'));          
+            
             if(songNode||option)
             {
-                if(songNode){
-                    const index=songNode.getAttribute('data-index')
+                
+                if(songNode&&!option){
+                    const index=songNode.getAttribute('data-index');
                     _this.currentIndex=Number(index);
                     _this.loadAndSave();
                     audio.play();
                 }
                 if(option){
-
+                    const addFavourite=favouriteArray.includes(favouriteIndex)     
+                    if(!addFavourite) favouriteArray.unshift(favouriteIndex)          
+                    else {
+                        deleteIndex=favouriteArray.indexOf(favouriteIndex)
+                        favouriteArray.splice(deleteIndex,1)   
+                    }
+                    _this.setConfig('favouriteList',favouriteArray)
+                    _this.favouriteSave();
+                    
                 }
             }
         };
@@ -282,7 +300,7 @@ const app={
     },
     loadCurrentSong: function(){
         this.currentSong=this.songs[this.currentIndex];
-        heading.textContent =this.currentSong.name;
+        heading.textContent =this.currentSong.name +' - '+this.currentSong.singer;
         cdThumb.style.backgroundImage = `url('${this.currentSong.image}')`;
         audio.src =this.currentSong.path;
         
@@ -291,6 +309,7 @@ const app={
         this.setConfig("currentIndex",this.currentIndex);
         this.loadCurrentSong();
         this.renderSong();
+        this.favouriteSave();
     },
     nextSong: function(){
         this.currentIndex++;
@@ -349,10 +368,6 @@ const app={
         this.volumeIconHandle();
        
     },
-    savingConfig: function(){
-
-
-    },
     reloadHandle: function(){ 
         //First load
         if(this.config.currentIndex===undefined)
@@ -368,16 +383,73 @@ const app={
         }
         randomBtn.classList.toggle('active',this.isRandom);
         repeatBtn.classList.toggle('active',this.isRepeat);
+    },
+    favouriteSave:function(){ 
+        favouriteArray=this.config.favouriteList;
+        console.log(favouriteArray);
+        const tempIndexArray=[];
+        this.songs.map((song,index)=>{
+            tempIndexArray.push(index)
+        });
+        let difference = tempIndexArray.filter(x => !favouriteArray.includes(x));
+            favouriteArray.map(favIndex=>{
+         
+                        const favouriteSong=$(`[data-index=\'${favIndex}\'] .favourite`)
+                        favouriteSong.classList.add('active');    
+
+            });
+            difference.map(favIndex=>{
+         
+                const favouriteSong=$(`[data-index=\'${favIndex}\'] .favourite`)
+                favouriteSong.classList.remove('active');           
+
+    });
     }
     ,
+    favouriteHandle:function(){
+        const _this1=this;
+        const favHtmls=favouriteArray.map(index=>{
+            return `<div class='fav' index=${index}>
+            <img src='Assets/lovesong.png'>  
+            ${this.songs[index].name} - ${this.songs[index].singer}
+             </div>`
+        })
+        favouriteSongList.innerHTML=favHtmls.join('');
+        const favChoosen=$$('.fav');
+        favChoosen.forEach(favSong=>{
+            const favSongIndex=Number(favSong.getAttribute('index'))
+            favSong.onclick=function(){
+                _this1.currentIndex=favSongIndex;
+                _this1.loadAndSave();
+                audio.play();
+            }
+        })
+    },
+    menuHandle: function() {
+        
+    ////c
+
+        const __this=this;
+        btnMenu.onclick=function(){
+            __this.favouriteHandle();
+            btnMenu.classList.toggle('close');
+            favouriteSongList.classList.toggle('active');
+        };
+        window.onclick=function(event){
+            if(!event.target.matches('.menuBtn')&&!event.target.matches('.line')){
+                btnMenu.classList.remove('close');
+                favouriteSongList.classList.remove('active'); 
+            }
+        }
+
+    },
     start: function(){
-        this.savingConfig();
         this.reloadHandle();
         this.volumeLoad();
         this.reloadHandle();
-        //this.currentIndex = this.config.currentIndex;
         this.loadAndSave();
         this.handleEvents();
+        this.menuHandle();
              
     }
 }
