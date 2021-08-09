@@ -21,7 +21,7 @@ const endTime=$('.endTime');
 const rangeValue=$('.rangeValue');
 const startTime =$('.startTime');
 const favouriteSongList=$('.favouriteList');
-var favouriteArray=[]
+var favouriteArray=[0.1]
 const app={
     currentSong: {},
     currentIndex: 0,
@@ -377,7 +377,7 @@ const app={
         {
             this.currentIndex=0;
             this.config.volume=100;
-           
+            
         }
         else {
             this.currentIndex = this.config.currentIndex;
@@ -390,7 +390,7 @@ const app={
         repeatBtn.classList.toggle('active',this.isRepeat);
     },
     favouriteSave:function(){ 
-        if(favouriteArray!=null)
+        if(favouriteArray!=undefined)
         {
             favouriteArray=this.config.favouriteList;
             const tempIndexArray=[];
