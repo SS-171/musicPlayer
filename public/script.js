@@ -373,21 +373,24 @@ const app={
     },
     reloadHandle: function(){ 
         //First load
-        if(this.config.currentIndex===undefined ||favouriteArray===undefined)
+        if(this.config.currentIndex===undefined)
         {
             this.currentIndex=0;
             this.config.volume=100;
-            this.config.favouriteList = 0.1;
-            console.log('ffdf')
             
         }
         else {
             this.currentIndex = this.config.currentIndex;
             this.isRandom=this.config.isRandom;
             this.isRepeat=this.config.isRepeat;
-            favouriteArray=this.config.favouriteList;
+            
             
         }
+        if(favouriteArray===undefined)
+            {
+                favouriteArray=[0.1]}
+        else favouriteArray=this.config.favouriteList;
+            
         randomBtn.classList.toggle('active',this.isRandom);
         repeatBtn.classList.toggle('active',this.isRepeat);
     },
