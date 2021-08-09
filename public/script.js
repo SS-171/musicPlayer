@@ -387,7 +387,7 @@ const app={
             
             
         }
-        if(this.config.favouriteList===undefined) favouriteArray =[0.1];
+        if(favouriteArray===undefined) favouriteArray =[0.1];
         else favouriteArray= this.config.favouriteList;
 
             
