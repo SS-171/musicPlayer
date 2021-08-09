@@ -373,7 +373,7 @@ const app={
     },
     reloadHandle: function(){ 
         //First load
-        if(this.config.currentIndex===undefined ||this.config.favouriteList===undefined)
+        if(this.config.currentIndex===undefined ||favouriteArray===undefined)
         {
             this.currentIndex=0;
             this.config.volume=100;
