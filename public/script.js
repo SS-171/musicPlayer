@@ -378,6 +378,7 @@ const app={
             this.currentIndex=0;
             this.config.volume=100;
             this.config.favouriteList = 0.1;
+            console.log('ffdf')
             
         }
         else {
