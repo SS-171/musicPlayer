@@ -380,6 +380,7 @@ const app={
             
         }
         else {
+            this.config.favouriteList=[0]
             this.currentIndex = this.config.currentIndex;
             this.isRandom=this.config.isRandom;
             this.isRepeat=this.config.isRepeat;
