@@ -21,7 +21,7 @@ const endTime=$('.endTime');
 const rangeValue=$('.rangeValue');
 const startTime =$('.startTime');
 const favouriteSongList=$('.favouriteList');
-var favouriteArray=[0.1]
+var favouriteArray=[]
 const app={
     currentSong: {},
     currentIndex: 0,
@@ -373,10 +373,11 @@ const app={
     },
     reloadHandle: function(){ 
         //First load
-        if(this.config.currentIndex===undefined)
+        if(this.config.currentIndex===undefined ||this.config.favouriteList===undefined)
         {
             this.currentIndex=0;
             this.config.volume=100;
+            this.config.favouriteList = 0.1;
             
         }
         else {
