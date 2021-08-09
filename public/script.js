@@ -395,7 +395,7 @@ const app={
         repeatBtn.classList.toggle('active',this.isRepeat);
     },
     favouriteSave:function(){ 
-        if(favouriteArray!=undefined)
+        if(favouriteArray!==undefined)
         {
             favouriteArray=this.config.favouriteList;
             const tempIndexArray=[];
