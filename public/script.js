@@ -383,7 +383,7 @@ const app={
             this.currentIndex = this.config.currentIndex;
             this.isRandom=this.config.isRandom;
             this.isRepeat=this.config.isRepeat;
-            
+            favouriteArray= this.config.favouriteList;
             
         }
 
