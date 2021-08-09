@@ -373,10 +373,11 @@ const app={
     },
     reloadHandle: function(){ 
         //First load
-        if(this.config.currentIndex===undefined)
+        if(this.config.currentIndex===undefined||this.config.currentIndex===undefined)
         {
             this.currentIndex=0;
             this.config.volume=100;
+            favouriteArray =[0.1];
             
         }
         else {
