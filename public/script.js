@@ -388,8 +388,10 @@ const app={
             
         }
         if(favouriteArray===undefined) favouriteArray =[0.1];
-        else favouriteArray= this.config.favouriteList;
-
+        else 
+        {
+            favouriteArray= this.config.favouriteList;
+        }   
             
         randomBtn.classList.toggle('active',this.isRandom);
         repeatBtn.classList.toggle('active',this.isRepeat);
