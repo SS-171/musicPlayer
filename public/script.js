@@ -388,7 +388,7 @@ const app={
             
         }
         if(favouriteArray===undefined) {
-            this.config.favouriteList =[0.1];
+            this.config.favouriteList =[];
             favouriteArray =this.config.favouriteList;
         }
 
@@ -427,13 +427,12 @@ const app={
     favouriteHandle:function(){
         const _this1=this;
         const favHtmls=favouriteArray.map(index=>{
-            if(index!==0.1)
-            {
+        
                 return `<div class='fav' index=${index}>
                 <img src='Assets/lovesong.png'>  
                 ${this.songs[index].name} - ${this.songs[index].singer}
                 </div>`
-            }
+            
         })
         favouriteSongList.innerHTML=favHtmls.join('');
         const favChoosen=$$('.fav');
