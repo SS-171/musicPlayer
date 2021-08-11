@@ -387,7 +387,10 @@ const app={
             
             
         }
-        if(favouriteArray===undefined) favouriteArray =[0.1];
+        if(favouriteArray===undefined) {
+            this.config.favouriteList =0.1;
+        }
+
         else 
         {
             favouriteArray= this.config.favouriteList;
@@ -397,7 +400,7 @@ const app={
         repeatBtn.classList.toggle('active',this.isRepeat);
     },
     favouriteSave:function(){ 
-        if(favouriteArray!==undefined)
+        if(favouriteArray!=undefined)
         {
             favouriteArray=this.config.favouriteList;
             const tempIndexArray=[];
@@ -423,10 +426,13 @@ const app={
     favouriteHandle:function(){
         const _this1=this;
         const favHtmls=favouriteArray.map(index=>{
-            return `<div class='fav' index=${index}>
-            <img src='Assets/lovesong.png'>  
-            ${this.songs[index].name} - ${this.songs[index].singer}
-             </div>`
+            if(index!==0.1)
+            {
+                return `<div class='fav' index=${index}>
+                <img src='Assets/lovesong.png'>  
+                ${this.songs[index].name} - ${this.songs[index].singer}
+                </div>`
+            }
         })
         favouriteSongList.innerHTML=favHtmls.join('');
         const favChoosen=$$('.fav');
