@@ -38,7 +38,7 @@
   
   .dashboard {
     padding: 16px 16px 14px;
-    background-color: rgb(205, 230, 240);
+    background-color: rgb(218, 244, 255);
     position: fixed;
     
     top: 0;
@@ -50,7 +50,7 @@
   .menuBtn {
     margin-top:10px;
     position:absolute;
-    background-color:rgb(205, 230, 240);
+    background-color:rgb(218, 244, 255);
     padding: 2px;
     width: 42px;
     height:42px;
@@ -384,12 +384,12 @@
  /* Favourite List */
  .favouriteList {
    font-size:15px;
-   color: rgb(83, 7, 7);
+   
    padding:5px;
    font-style: oblique;
    position:absolute;
-   font-weight: 560;
-   border-radius:8px;
+   font-weight: 500;
+   border-radius:6px;
    width: 70%;
    margin: 55px 15px auto 8px;
    max-height:30%;
@@ -407,11 +407,11 @@
  .favouriteList div:hover{
    
   cursor:pointer;
-  background-color:rgb(113, 224, 68)
+  background-color:rgb(49, 214, 63);
  }
  .favouriteList.active{
    display:block !important;
-  animation:fadeIn 1.5s both;
+  animation:fadeIn 1s both;
  }
  @-webkit-keyframes fadeIn{
   0%{ opacity:0 ;
