@@ -389,6 +389,7 @@ const app={
         }
         if(favouriteArray===undefined) {
             this.config.favouriteList =0.1;
+            favouriteArray =this.config.favouriteList;
         }
 
         else 
