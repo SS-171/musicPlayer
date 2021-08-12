@@ -406,7 +406,7 @@
  /* Favourite List */
  .favouriteList {
    font-size:15px;
-   
+   z-index: 11;
    padding:5px;
    font-style: oblique;
    position:absolute;
@@ -418,7 +418,7 @@
    overflow:auto;
    box-shadow: 2px 2px 5px #817272;
    text-indent: 6px;
-   z-index: 1;
+
    display:none;
    border: 1px solid rgb(174, 173, 179);
 
