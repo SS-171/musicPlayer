@@ -5,7 +5,9 @@ const player=$('.player');
 const volumeSet=$('#volumeAdjust')
 const volumeIcon=$('.volume .btn-volume')
 const activeSong=$('.song.active');
-const cd = $('.cd');
+const cd =$('.cd');
+const cdProgressFull = $('.cd .circle .mask.full');
+const cdProgressFill = $$('.cd .circle .mask .fill');
 const heading = $('header marquee');
 const cdThumb =$('.cd-thumb');
 const repeatBtn = $('.btn-repeat');
@@ -15,12 +17,14 @@ const nextBtn = $('.btn-next');
 const btnMenu=$('.menuBtn');
 const randomBtn = $('.btn-random');
 const progress= $('#progress');
+const progressRange= $('.progressRange')
 const audio = $('#audio');
 const playlist = $('.playlist');
 const endTime=$('.endTime');
 const rangeValue=$('.rangeValue');
 const startTime =$('.startTime');
 const favouriteSongList=$('.favouriteList');
+var r = $(':root');
 var favouriteArray=[]
 const app={
     currentSong: {},
@@ -100,6 +104,7 @@ const app={
     handleEvents: function(){
         const _this=this; 
         const cdWidth = cd.offsetWidth;
+        const cdHeight =cd.offsetHeight;
         //CD Rotation
         const cdThumbAnimate =cdThumb.animate([
             {transform:'rotate(360deg)'}
@@ -114,10 +119,15 @@ const app={
         
         //Scroll view
         document.onscroll = function(){
+            var rs=getComputedStyle(r);
+            console.log(rs.getPropertyValue('--cd-dim'));
             const scrollTop = window.scrollY||document.documentElement.scrollTop
             const newWidth = cdWidth -scrollTop;
-            cd.style.width = newWidth>0?newWidth +"px":0;
-            cd.style.opacity = newWidth/cdWidth;
+            const scaleRatio=newWidth/cdWidth;
+            r.style.setProperty('--cd-dim',newWidth+'px');
+            r.style.setProperty('--thumb-dim',Math.floor(newWidth*92/100)+'px');
+            r.style.setProperty('--c-width',Math.floor(newWidth*4/100)+'px');
+            cd.style.opacity = scaleRatio;
         };     
      //Listen Button Control event  
         playBtn.onclick = function(){
@@ -201,13 +211,18 @@ const app={
                     const currentSecond =Math.floor(audio.currentTime%60)
                     rangeValue.innerHTML =`0${currentMinute}:${currentSecond>9?currentSecond:'0'+currentSecond}`;
                     startTime.innerHTML =`0${currentMinute}:${currentSecond>9?currentSecond:'0'+currentSecond}`;
-                    rangeValue.style.left =audio.currentTime/audio.duration*89+'%'
+                     rangeValue.style.left =currentProgress+'%';
                     var color = 'linear-gradient(90deg, rgb(9, 241, 21)' + progress.value + '% , rgb(214, 214, 214)' + progress.value+ '%)';
                     progress.style.background =color;
 
                     ///cd Thumb complete percent
-                    cd.style.background=`linear-gradient(to left, purple ${progress.value}%, rgb(207, 217, 221) 0%)`
-                    cd.style.transform=`rotate(${50-progress.value}deg)`
+                    const percent =currentProgress/100*180;
+                    console.log(percent)
+                    cdProgressFull.style.transform = `rotate(${percent}deg)`;
+                    cdProgressFill.forEach(fillElement=>{
+                        fillElement.style.transform = `rotate(${percent}deg)`;
+                    });
+                    
                     
                 }
             };

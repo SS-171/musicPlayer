@@ -1,6 +1,9 @@
 :root {
-    --primary-color: #ec1f55;
+    --primary-color: #e94873;
     --text-color: #333;
+    --cd-dim: 150px;
+    --thumb-dim: 140px;
+    --c-width: 5px;
   }
   
   * {
@@ -123,24 +126,43 @@
   .cd {
     display: flex;
     margin: auto;
+    
+    /* flex-direction: row; */
+    width: var(--cd-dim);
+    height: var(--cd-dim);
     border-radius:50%;
-    flex-direction: row;
-    width: 150px;
-    background: linear-gradient(to left, purple 0%, rgb(207, 217, 221) 0%);
-    transform: rotate(0deg);
-    padding: 4px;
+    background-color:#fff;
   }
-  .cd:hover{
-    padding:2px;
+  .cd .circle .mask , 
+  .cd .circle .fill {
+    width: var(--cd-dim);
+    height: var(--cd-dim);
+    border-radius: 50%;
+    position: absolute;
   }
+  .cd .circle .mask{
+    clip: rect(0px, var(--cd-dim), var(--cd-dim),calc(var(--cd-dim)/2));/*take the half right*/
+
+  }
+  .cd .circle .mask .fill{
+    clip: rect(0px,calc(var(--cd-dim)/2), var(--cd-dim), 0px);/*take the half left*/
+  background-color: #9e00b1;
+  }
+  .cd .circle .mask.full,
+  .cd .circle .mask .fill{
+  transform: rotate(0deg);
+  }
+
   .cd-thumb {
-    width: 100%;
-    padding-top: 100%;
-    border: 4px gradient dotted 1px;
+    position: absolute;
+    width: var(--thumb-dim);
+    height: var(--thumb-dim);
+    margin-left: var(--c-width);
+    margin-top: var(--c-width);
     border-radius: 50%;
     background-color: #333;
     background-size: cover;
-    margin: auto;
+    z-index: 10;
   }
   /* CONTROL */
   .control {
@@ -177,6 +199,7 @@
     margin-left: 18px;
   }
   .progressRange {
+    position: relative;
     --c: none;
   }
   .progressRange:hover{
@@ -201,8 +224,8 @@
     display: var(--c);
     -webkit-appearance: none;
     appearance: none;
-    width: 15px;
-    height: 15px;
+    width: 13px;
+    height: 13px;
     border-radius: 50%;
     box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
     background-color: var(--primary-color);
@@ -211,8 +234,8 @@
   .progress::-moz-range-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 12px;
-    height: 10px;
+    width: 13px;
+    height: 13px; 
     border-radius: 6px;
     box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
     background-color: var(--primary-color);
@@ -220,7 +243,6 @@
   }
   .progress:hover{
     opacity: 1;
-    padding: 2.5px;
     cursor: pointer;
   
   }
@@ -238,8 +260,8 @@
     font-size: 12px;
     position: absolute;
     margin-top:3px;
-    left: 0%;
-     /* transform: translate(-50%, 0);  */
+    left: 2%;
+     transform: translate(-50%, 0); 
     border-radius: 6px;
   }
   
@@ -378,7 +400,7 @@
 
   }
  .favourite.active{
-   color:rgb(19, 206, 197);
+   color:rgb(235, 10, 10);
  }
 
  /* Favourite List */
