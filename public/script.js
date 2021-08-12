@@ -125,8 +125,8 @@ const app={
             const newWidth = cdWidth -scrollTop;
             const scaleRatio=newWidth/cdWidth;
             r.style.setProperty('--cd-dim',newWidth+'px');
-            r.style.setProperty('--thumb-dim',Math.floor(newWidth*92/100)+'px');
-            r.style.setProperty('--c-width',Math.floor(newWidth*4/100)+'px');
+            r.style.setProperty('--thumb-dim',Math.floor(newWidth*94/100)+'px');
+            r.style.setProperty('--c-width',Math.floor(newWidth*3/100)+'px');
             cd.style.opacity = scaleRatio;
         };     
      //Listen Button Control event  
