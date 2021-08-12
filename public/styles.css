@@ -164,11 +164,6 @@
     background-size: cover;
     z-index: 10;
   }
-  .cd-thumb:hover{
-    padding:2px 2px;
-    cursor: pointer;
-
-  }
   /* CONTROL */
   .control {
     display: flex;
